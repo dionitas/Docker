@@ -2,6 +2,8 @@
 
 Criação dos conteiners Couchpotato, Sickrage, Transmission
 
+
+# Couchpotato
 docker create \
 	--name=couchpotato \
 	-v /mnt/container_conf/couchpotato/config:/config \
@@ -14,23 +16,26 @@ docker create \
     --restart unless-stopped \
 	linuxserver/couchpotato
 
+
+# Sickrage
 docker create --name=sickrage \
--v /mnt/container_conf/sickrage/config:/config \
--v /mnt/downloads:/downloads \
--v /mnt/torrent/seriados:/tv \
--e PGID=0 -e PUID=0 \
--e TZ=America/Sao_Paulo \
--p 8081:8081 \
-linuxserver/sickrage
+    -v /mnt/container_conf/sickrage/config:/config \
+    -v /mnt/downloads:/downloads \
+    -v /mnt/torrent/seriados:/tv \
+    -e PGID=0 -e PUID=0 \
+    -e TZ=America/Sao_Paulo \
+    -p 8081:8081 \
+    linuxserver/sickrage
 
 
+# Transmission
 docker create --name=transmission \
--v /mnt/vms/container_conf/transmission:/config \
--v /mnt/vms/torrent:/downloads \
--v /mnt/vms/downloads:/watch \
--v /mnt/vms/torrent/movie:/movie \
--e PGID=0 -e PUID=0 \
--e TZ=America/Sao_Paulo \
--p 9091:9091 -p 51413:51413 -p 51413:51413/udp \
---restart unless-stopped \
-linuxserver/transmission
+    -v /mnt/vms/container_conf/transmission:/config \
+    -v /mnt/vms/torrent:/downloads \
+    -v /mnt/vms/downloads:/watch \
+    -v /mnt/vms/torrent/movie:/movie \
+    -e PGID=0 -e PUID=0 \
+    -e TZ=America/Sao_Paulo \
+    -p 9091:9091 -p 51413:51413 -p 51413:51413/udp \
+    --restart unless-stopped \
+    linuxserver/transmission
